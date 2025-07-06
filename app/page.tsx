@@ -56,6 +56,7 @@ export default function NewsletterPage() {
           We&apos;ll send you some underrated songs from your favorite genres
           soon.
         </p>
+        <Button className='w-full'>Back</Button>
       </div>
     );
   }
