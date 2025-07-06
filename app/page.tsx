@@ -17,6 +17,7 @@ const GENRES = [
   "Metal",
   "Folk",
   "Experimental",
+  "House",
 ];
 
 export default function NewsletterPage() {
@@ -52,7 +53,8 @@ export default function NewsletterPage() {
       <div className='max-w-md mx-auto mt-10 text-center'>
         <h2 className='text-2xl font-bold mb-4'>Thanks for signing up!</h2>
         <p>
-          We&apos;ll send you 5 underrated songs from your favorite genres soon.
+          We&apos;ll send you some underrated songs from your favorite genres
+          soon.
         </p>
       </div>
     );
@@ -62,7 +64,7 @@ export default function NewsletterPage() {
     <div className='max-w-md mx-auto mt-10'>
       <Card>
         <CardContent className='p-6'>
-          <h2 className='text-2xl font-bold mb-4'>Undercurrent Newsletter</h2>
+          <h2 className='text-2xl font-bold mb-4'>Aux&apos;s the obelisk</h2>
           <p className='mb-4 text-muted-foreground'>
             Pick your favorite genres and get hidden gems sent to your inbox.
           </p>
@@ -102,6 +104,10 @@ export default function NewsletterPage() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div>
+              <Label>Message</Label>
             </div>
 
             <Button type='submit' className='w-full'>
