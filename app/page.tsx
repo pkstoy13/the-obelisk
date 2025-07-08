@@ -6,23 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
+//import Link from "next/link";
 
-const GENRES = [
-  "Indie Rock",
-  "Hip-Hop",
-  "Electronic",
-  "Jazz",
-  "Alternative",
-  "R&B",
-  "Metal",
-  "Folk",
-  "Experimental",
-  "House",
-];
+const GENRES = ["Any", "Indie Rock", "Hip-Hop", "R&B", "House", "Jungle"];
 
 export default function NewsletterPage() {
   const [email, setEmail] = useState("");
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,6 +30,7 @@ export default function NewsletterPage() {
       body: JSON.stringify({
         email,
         genres: selectedGenres,
+        message,
       }),
     });
 
@@ -56,7 +49,13 @@ export default function NewsletterPage() {
           We&apos;ll send you some underrated songs from your favorite genres
           soon.
         </p>
-        <Button className='w-full'>Back</Button>
+        <Button
+          className='w-full'
+          variant='outline'
+          onClick={() => window.location.reload()}
+        >
+          Back
+        </Button>
       </div>
     );
   }
@@ -64,13 +63,13 @@ export default function NewsletterPage() {
   return (
     <div className='max-w-md mx-auto mt-10'>
       <Card>
-        <CardContent className='p-6'>
+        <CardContent className='p-6 flex flex-col items-center text-center'>
           <h2 className='text-2xl font-bold mb-4'>Aux&apos;s the obelisk</h2>
           <p className='mb-4 text-muted-foreground'>
             Pick your favorite genres and get hidden gems sent to your inbox.
           </p>
 
-          <form onSubmit={handleSubmit} className='space-y-4'>
+          <form onSubmit={handleSubmit} className='space-y-4 w-full max-w-sm'>
             <div>
               <Label htmlFor='email'>Email</Label>
               <Input
@@ -85,12 +84,33 @@ export default function NewsletterPage() {
 
             <div>
               <Label>Genres</Label>
-              <div className='grid grid-cols-2 gap-2 mt-2'>
-                {GENRES.map((genre) => (
+
+              {/* "Any" option centered on its own row */}
+              <div className='flex justify-center mt-2 mb-4'>
+                <div className='flex items-center space-x-2'>
+                  <Checkbox
+                    id='Any'
+                    checked={selectedGenres.includes("Any")}
+                    onCheckedChange={() => {
+                      setSelectedGenres((prev) =>
+                        prev.includes("Any") ? [] : ["Any"]
+                      );
+                    }}
+                  />
+                  <Label htmlFor='Any' className='text-sm'>
+                    Any
+                  </Label>
+                </div>
+              </div>
+
+              {/* All other genres in 2-column grid */}
+              <div className='grid grid-cols-2 gap-2'>
+                {GENRES.filter((g) => g !== "Any").map((genre) => (
                   <div key={genre} className='flex items-center space-x-2'>
                     <Checkbox
                       id={genre}
                       checked={selectedGenres.includes(genre)}
+                      disabled={selectedGenres.includes("Any")}
                       onCheckedChange={() => {
                         setSelectedGenres((prev) =>
                           prev.includes(genre)
@@ -108,7 +128,16 @@ export default function NewsletterPage() {
             </div>
 
             <div>
-              <Label>Message</Label>
+              <Label>Message (optional)</Label>
+              <Textarea
+                className='h-24 flex items-start mt-4'
+                placeholder='Optional Message'
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <Label htmlFor={message} className='text-sm'>
+                {message}
+              </Label>
             </div>
 
             <Button type='submit' className='w-full'>
