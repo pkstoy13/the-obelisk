@@ -5,6 +5,7 @@ import "./globals.css";
 const syneMono = Syne_Mono({
   variable: "--font-syne-mono",
   weight: "400",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
