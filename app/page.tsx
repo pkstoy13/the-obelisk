@@ -9,15 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 //import Link from "next/link";
 
-const GENRES = [
-  "Any",
-  "Indie Rock",
-  "Hip-Hop",
-  "R&B",
-  "House",
-  "Jungle",
-  "Ambient",
-];
+const GENRES = ["indie Rock", "hip-hop", "r&B", "house", "jungle", "ambient"];
 
 export default function NewsletterPage() {
   const [email, setEmail] = useState("");
@@ -52,17 +44,14 @@ export default function NewsletterPage() {
   if (submitted) {
     return (
       <div className='max-w-md mx-auto mt-10 text-center'>
-        <h2 className='text-2xl font-bold mb-4'>Thanks for signing up!</h2>
-        <p>
-          We&apos;ll send you some underrated songs from your favorite genres
-          soon.
-        </p>
+        <h2 className='text-2xl font-bold mb-4'>thanks for signing up</h2>
+        <p className='mb-4'>expect some songs soon</p>
         <Button
           className='w-full'
           variant='outline'
           onClick={() => window.location.reload()}
         >
-          Back
+          back...
         </Button>
       </div>
     );
@@ -72,10 +61,10 @@ export default function NewsletterPage() {
     <div className='max-w-md mx-auto mt-4'>
       <Card>
         <CardContent className='p-6 flex flex-col items-center text-center'>
-          <p className='mr-36 italic'>Aux&apos;s</p>
+          <p className='mr-36 italic'>AUX&apos;s</p>
           <h2 className='text-2xl font-bold mb-2'>the obelisk</h2>
           <p className='mb-2 text-muted-foreground'>
-            Pick your favorite genres and get hidden gems sent to your inbox.
+            pick your favorite genres and get hidden gems sent to your inbox.
           </p>
 
           <form onSubmit={handleSubmit} className='space-y-4 w-full max-w-sm'>
@@ -107,7 +96,7 @@ export default function NewsletterPage() {
                     }}
                   />
                   <Label htmlFor='Any' className='text-sm'>
-                    Any
+                    any
                   </Label>
                 </div>
               </div>
@@ -140,17 +129,17 @@ export default function NewsletterPage() {
               <Label>Message</Label>
               <Textarea
                 className='h-24 flex items-start mt-4'
-                placeholder='Optional Message'
+                placeholder='optional'
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
-              <Label htmlFor={message} className='text-sm'>
+              {/*<Label htmlFor={message} className='text-sm'>
                 {message}
-              </Label>
+              </Label>*/}
             </div>
 
             <Button type='submit' className='w-full'>
-              Subscribe
+              enter...
             </Button>
           </form>
         </CardContent>
