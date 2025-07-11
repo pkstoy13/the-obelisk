@@ -9,7 +9,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 //import Link from "next/link";
 
-const GENRES = ["Any", "Indie Rock", "Hip-Hop", "R&B", "House", "Jungle"];
+const GENRES = [
+  "Any",
+  "Indie Rock",
+  "Hip-Hop",
+  "R&B",
+  "House",
+  "Jungle",
+  "Ambient",
+];
 
 export default function NewsletterPage() {
   const [email, setEmail] = useState("");
@@ -61,11 +69,12 @@ export default function NewsletterPage() {
   }
 
   return (
-    <div className='max-w-md mx-auto mt-10'>
+    <div className='max-w-md mx-auto mt-4'>
       <Card>
         <CardContent className='p-6 flex flex-col items-center text-center'>
-          <h2 className='text-2xl font-bold mb-4'>Aux&apos;s the obelisk</h2>
-          <p className='mb-4 text-muted-foreground'>
+          <p className='mr-36 italic'>Aux&apos;s</p>
+          <h2 className='text-2xl font-bold mb-2'>the obelisk</h2>
+          <p className='mb-2 text-muted-foreground'>
             Pick your favorite genres and get hidden gems sent to your inbox.
           </p>
 
@@ -104,7 +113,7 @@ export default function NewsletterPage() {
               </div>
 
               {/* All other genres in 2-column grid */}
-              <div className='grid grid-cols-2 gap-2'>
+              <div className='grid grid-cols-2 gap-2 gap-x-44'>
                 {GENRES.filter((g) => g !== "Any").map((genre) => (
                   <div key={genre} className='flex items-center space-x-2'>
                     <Checkbox
@@ -128,7 +137,7 @@ export default function NewsletterPage() {
             </div>
 
             <div>
-              <Label>Message (optional)</Label>
+              <Label>Message</Label>
               <Textarea
                 className='h-24 flex items-start mt-4'
                 placeholder='Optional Message'
