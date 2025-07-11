@@ -58,7 +58,7 @@ export default function NewsletterPage() {
   }
 
   return (
-    <div className='max-w-md mx-auto mt-4'>
+    <div className='max-w-md mx-auto mt-10'>
       <Card>
         <CardContent className='p-6 flex flex-col items-center text-center'>
           <p className='mr-36 italic'>AUX&apos;s</p>
