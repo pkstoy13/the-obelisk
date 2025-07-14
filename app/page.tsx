@@ -73,7 +73,8 @@ export default function NewsletterPage() {
               <p className='mr-36 italic'>AUX&apos;s</p>
               <h2 className='text-2xl font-bold mb-2'>the obelisk</h2>
               <p className='mb-2 text-muted-foreground'>
-                pick your favorite genres and i&apos;ll send you what u need
+                pick your favorite genres and i&apos;ll send you some
+                underground songs
               </p>
 
               <form
