@@ -48,7 +48,7 @@ export default function NewsletterPage() {
         <h2 className='text-2xl font-bold mb-4'>thanks for signing up</h2>
         <p className='mb-4'>expect some songs soon</p>
         <Button
-          className='w-full'
+          className='w-full cursor-pointer'
           variant='outline'
           onClick={() => window.location.reload()}
         >
@@ -89,6 +89,7 @@ export default function NewsletterPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className='mt-2'
                   />
                 </div>
 
@@ -140,7 +141,7 @@ export default function NewsletterPage() {
                 <div>
                   <Label>Message</Label>
                   <Textarea
-                    className='h-24 flex items-start mt-4'
+                    className='h-24 flex items-start mt-2'
                     placeholder='optional'
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -150,7 +151,7 @@ export default function NewsletterPage() {
               </Label>*/}
                 </div>
 
-                <Button type='submit' className='w-full'>
+                <Button type='submit' className='w-full cursor-pointer'>
                   enter...
                 </Button>
               </form>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Syne_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const syneMono = Syne_Mono({
@@ -10,7 +11,7 @@ const syneMono = Syne_Mono({
 
 export const metadata: Metadata = {
   title: "the obelisk",
-  description: "welcome",
+  description: "underground music letter",
   icons: {
     icon: "/Obelisk.ico",
   },
@@ -23,6 +24,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          strategy='afterInteractive'
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_TAG}`}
+        />
+        <Script
+          id='google-analytics'
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.GA_TAG}');
+            `,
+          }}
+        />
+      </head>
       <body className={`${syneMono.variable} dark font-syne-mono antialiased`}>
         {children}
       </body>
