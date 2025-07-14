@@ -74,7 +74,7 @@ export default function NewsletterPage() {
               <h2 className='text-2xl font-bold mb-2'>the obelisk</h2>
               <p className='mb-2 text-muted-foreground'>
                 pick your favorite genres and i&apos;ll send you some
-                underground songs
+                underground songs weekly
               </p>
 
               <form
