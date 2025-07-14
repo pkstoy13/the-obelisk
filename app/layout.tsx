@@ -11,6 +11,9 @@ const syneMono = Syne_Mono({
 export const metadata: Metadata = {
   title: "the obelisk",
   description: "welcome",
+  icons: {
+    icon: "/Obelisk.ico",
+  },
 };
 
 export default function RootLayout({

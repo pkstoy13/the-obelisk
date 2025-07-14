@@ -118,6 +118,32 @@
   font-family: var(--font-syne-mono);
 }
 
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  45% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  55% {
+    opacity: 0.1;
+  }
+  70% {
+    opacity: 0.13;
+  }
+  85% {
+    opacity: 0.09;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 6s infinite ease-in-out;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
