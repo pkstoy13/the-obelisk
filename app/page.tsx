@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 //import Obelisk from "@/public/Obelisk.png";
 //import Link from "next/link";
+import Image from "next/image";
 
 const GENRES = ["indie Rock", "hip-hop", "r&B", "house", "jungle", "ambient"];
 
@@ -61,11 +62,14 @@ export default function NewsletterPage() {
   return (
     <div className='relative min-h-screen flex flex-col items-center justify-between bg-black overflow-hidden px-4'>
       {/* Background obelisk */}
-      <img
+      <Image
         src='/Obelisk.png'
         alt='Obelisk'
+        width={500}
+        height={500}
         className='absolute inset-0 w-full h-full object-contain opacity-10 blur-sm scale-125 animate-flicker pointer-events-none'
-      />
+      ></Image>
+
       <div className='flex-grow flex items-center justify-center w-full z-10'>
         <div className='w-full max-w-md'>
           <Card className='bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl'>
