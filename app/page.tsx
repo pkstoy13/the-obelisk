@@ -170,7 +170,7 @@ export default function NewsletterPage() {
           Instagram
         </a>
         <a
-          href='https://tiktok.com/auxupnext'
+          href='https://tiktok.com/@auxupnext'
           target='_blank'
           rel='noopener noreferrer'
           className='hover:underline'

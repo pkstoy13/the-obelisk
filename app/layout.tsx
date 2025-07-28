@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "the obelisk",
   description: "underground music letter",
   icons: {
-    icon: "/Obelisk.ico",
+    icon: "/obelisk 1st draft no bg.svg",
   },
 };
 
