@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 //import Obelisk from "@/public/Obelisk.png";
 //import Link from "next/link";
 import Image from "next/image";
+import { toast } from "sonner";
 
 const GENRES = ["indie Rock", "hip-hop", "r&B", "house", "jungle", "ambient"];
 
@@ -22,11 +23,13 @@ export default function NewsletterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || selectedGenres.length === 0) {
-      alert("Please enter your email and select at least one genre.");
+      toast("Please enter your email and select at least one genre.");
       return;
     }
 
-    const res = await fetch("/api/newsletter", {
+    setSubmitted(true); // Show "Thank you" immediately
+
+    fetch("/api/newsletter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -34,27 +37,95 @@ export default function NewsletterPage() {
         genres: selectedGenres,
         message,
       }),
+    }).catch(() => {
+      // You can show a toast or fallback message if you want
+      toast("Something went wrong sending the form.");
     });
-
-    if (res.ok) {
-      setSubmitted(true);
-    } else {
-      alert("Something went wrong. Please try again.");
-    }
   };
 
   if (submitted) {
+    const shareUrl = "https://auxupnext.com"; // Replace with your actual site
+
+    const handleShare = async () => {
+      const shareData = {
+        title: "AUX's The Obelisk",
+        text: "Check out this underground music newsletter I'm into 🎧",
+        url: shareUrl,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+          toast("Thanks for sharing!");
+        } catch (err) {
+          console.error("Share cancelled or failed", err);
+        }
+      } else {
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+          toast("Link Copied!");
+        } catch (err) {
+          console.error(err);
+          toast("Copy failed — please try manually.");
+        }
+      }
+    };
+
     return (
-      <div className='max-w-md mx-auto mt-10 text-center'>
-        <h2 className='text-2xl font-bold mb-4'>thanks for signing up</h2>
-        <p className='mb-4'>expect some songs soon</p>
-        <Button
-          className='w-full cursor-pointer'
-          variant='outline'
-          onClick={() => window.location.reload()}
-        >
-          back...
-        </Button>
+      <div className='flex items-center justify-center min-h-screen px-4'>
+        <div className='text-center space-y-4'>
+          <h2 className='text-3xl font-bold'>thanks for signing up</h2>
+          <p className='text-muted-foreground'>expect some songs soon</p>
+
+          {/* Buttons: Back & Share */}
+          <div className='flex justify-center gap-4 pt-4'>
+            <Button
+              variant='outline'
+              size='icon'
+              className='cursor-pointer'
+              onClick={() => window.location.reload()}
+            >
+              <span className='sr-only'>Back</span>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-5 w-5'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M15 19l-7-7 7-7'
+                />
+              </svg>
+            </Button>
+
+            <Button
+              variant='default'
+              size='icon'
+              className='cursor-pointer'
+              onClick={handleShare}
+            >
+              <span className='sr-only'>Share</span>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-5 w-5'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M12 4v16m0-16l-6 6m6-6l6 6M4 20h16'
+                />
+              </svg>
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
