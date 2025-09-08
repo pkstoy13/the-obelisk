@@ -3,9 +3,9 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
-  const { email, genres, message } = await req.json();
+  const { name, email, genres, message } = await req.json();
 
-  if (!email || !genres || genres.length === 0) {
+  if (!name || !email || !genres || genres.length === 0) {
     return new Response("Missing fields", { status: 400 });
   }
 
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       from: "Aux <noreply@auxupnext.com>", // Must be a verified sender in Resend
       to: ["contact@auxupnext.com", "pkstoyanov1@gmail.com"], // Replace with your real email
       subject: "New Newsletter Signup",
-      text: `New subscriber: ${email}\nGenres: ${genres.join(", ")}\nMessage: ${message}`,
+      text: `New subscriber: ${name}\nEmail: ${email}\nGenres: ${genres.join(", ")}\nMessage: ${message}`,
     });
 
     return new Response("OK", { status: 200 });
